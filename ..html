@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ATTENDANCE TRACKER - Dashboard</title>
+  <style>
+    body {
+      background-image: url("bg1.webp");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: 100%;
+      width: 230px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: lightgreen;
+      overflow-x: hidden;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-name {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-name img {
+      width: 60px;
+      border-radius: 50%;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .logo-name .name {
+      font-size: 24px;
+      font-weight: bold;
+      color: black;
+    }
+
+    .sidebar a {
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: black;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .sidebar a:hover {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar a img {
+      width: 30px;
+      margin-right: 15px;
+    }
+
+    /* Header */
+    header {
+      background-color: lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(100% - 230px);
+      padding: 15px 0;
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      position: fixed;
+      top: 0;
+      left: 230px;
+      z-index: 1;
+    }
+
+    /* Main Content */
+    .main {
+      margin-left: 230px;
+      padding: 100px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Dashboard Cards */
+    .dashboard-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 40px 20px;
+      border-radius: 15px;
+      box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+
+    .total { background-color: #4da6ff; color: white; }
+    .present { background-color: #4caf50; color: white; }
+    .late { background-color: #ffcc00; color: black; }
+    .absent { background-color: #f44336; color: white; }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo-name">
+      <img src="school logo.jpg" alt="School Logo" onclick="goToHome()">
+      <div class="name">OSHS</div>
+    </div>
+    <a href="#dashboard" onclick="dashboard()"><img src="home.png" alt="Dashboard"> Dashboard</a>
+    <a href="#attendancelogs" onclick="attendance()"><img src="log.png" alt="Attendance Logs"> Attendance Logs</a>
+    <a href="#history" onclick="history()"><img src="history.png" alt="History"> History</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <header>Online Web-Based Attendance Checker</header>
+
+    <div class="dashboard-cards">
+      <div class="card total">Total Students: <span id="total-students">0</span></div>
+      <div class="card present">Present: <span id="present-students">0</span></div>
+      <div class="card late">Late: <span id="late-students">0</span></div>
+      <div class="card absent">Absent: <span id="absent-students">0</span></div>
+    </div>
+  </div>
+
+  <script>
+    function goToHome() {
+      window.location.href = "my code.html";
+    }
+
+    function dashboard() {
+      window.location.href = "dashboard.html";
+    }
+
+    function attendance() {
+      window.location.href = "attendance logs.html";
+    }
+
+    function history() {
+      window.location.href = "history.html";
+    }
+
+    // Function to update dashboard from localStorage attendance logs
+    function updateDashboard() {
+      const attendanceLogs = JSON.parse(localStorage.getItem("attendanceLogs")) || [];
+      
+      const total = attendanceLogs.length;
+      const present = attendanceLogs.filter(log => log.status === "Present").length;
+      const late = attendanceLogs.filter(log => log.status === "Late").length;
+      const absent = attendanceLogs.filter(log => log.status === "Absent").length;
+
+      document.getElementById("total-students").textContent = total;
+      document.getElementById("present-students").textContent = present;
+      document.getElementById("late-students").textContent = late;
+      document.getElementById("absent-students").textContent = absent;
+    }
+
+    // Update dashboard on page load
+    window.addEventListener("load", updateDashboard);
+
+    // Listen for localStorage changes to update the dashboard in real-time
+    window.addEventListener("storage", (event) => {
+      if (event.key === "attendanceLogs") {
+        updateDashboard();
+      }
+    });
+  </script>
+</body>
+</html>

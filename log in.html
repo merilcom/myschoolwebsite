@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login & Sign Up</title>
+    <style>
+body {
+    background-image: url("bg1.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    font-family: serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    background-color: lightgreen;
+    display: flex;
+    align-items: center;
+    padding: 15px 15px; /* Mas maliit na padding */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    position: fixed; /* Fixed para laging nasa taas */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header img {
+    width: 50px; /* Mas maliit para hindi masyadong bulky */
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+header h4 {
+    font-size: 1.2em; /* Medyo maliit para di kumain ng space */
+    color: black;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 300px; /* Fixed width para di lumapad */
+    max-width: 90%;
+    margin-top: 80px; /* Mas maliit na margin para hindi humaba */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: green;
+    color: white;
+}
+
+.toggle {
+    margin-top: 10px;
+    color: blue;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="school logo.jpg" alt="School Logo" onclick="goToHome()">
+        <h4> OBANDO SENIOR HIGH SCHOOL - STAND ALONE </h4>
+    </header>
+
+    <div class="container" id="signup-form" style="display: none;">
+        <h2>Sign Up</h2>
+        <input type="text" placeholder="Username" id="signup-user">
+        <input type="password" placeholder="Password" id="signup-pass">
+        <button onclick="signup()">Sign Up</button>
+        <p class="toggle" onclick="showLogin()">Already have an account? Log In</p>
+    </div>
+
+   <div class="container" id="login-form">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="login-user">
+        <input type="password" placeholder="Password" id="login-pass">
+        <button onclick="login()">Log In</button>
+        <p class="toggle" onclick="showSignup()">Don't have an account? Sign Up</p>
+    </div>
+
+    <script>
+        function showSignup() {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("signup-form").style.display = "flex";
+        }
+
+        function showLogin() {
+            document.getElementById("signup-form").style.display = "none";
+            document.getElementById("login-form").style.display = "flex";
+        }
+
+        function login() {
+            let username = document.getElementById("login-user").value;
+            let password = document.getElementById("login-pass").value;
+            if (username === "" || password === "") {
+                alert("Please fill in both fields.");
+            } else {
+                window.location.href = "dashboard.html";
+            }
+        }
+
+        function signup() {
+            let username = document.getElementById("signup-user").value;
+            let password = document.getElementById("signup-pass").value;
+            if (username === "" || password === "") {
+                alert("Please fill in both fields.");
+            } else {
+                alert("Account created! Please log in.");
+                showLogin();
+            }
+        }
+
+        function goToHome() {
+            window.location.href = "my code.html";
+        }
+		
+		
+    </script>
+</body>
+</html>

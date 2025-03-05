@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title> ATTENDANCE TRACKER </title>
+
+		<style>
+			body {
+				background-image: url("bg1.webp");
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				height: 100vh;
+				margin: 0;
+			}
+			
+			header {
+				background-color: lightgreen;
+				display: flex;
+				align-items: center;
+				padding: 9px;
+				border-radius: 10px;
+			}
+
+			header img {
+				width: 60px;
+				border-radius: 50%;
+				margin-right: 10px;
+				cursor: pointer;
+			}
+			
+			header h4{
+				font-size: 1.2em;
+			}
+			
+			div {
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+			}
+			
+			h1 {
+				font-size: 3.9em;
+				color: white;
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+				margin-top: 150px;
+				text-align: center;
+			}
+
+			button {
+				padding: 10px 20px;
+				font-size: 1.2em;
+				background-color: lightgreen;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+				transition: background-color 0.3s;
+			}
+
+			button:hover {
+				background-color: green;
+				color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+	<header>
+		<img src="school logo.jpg" alt="School Logo" onclick="goToHome()">
+		<h4> OBANDO SENIOR HIGH SCHOOL - STAND ALONE </h4>
+	</header>
+	
+	<div>
+	<h1> Welcome to OSHS <br> Online Web-Based Attendance Checker</h1>
+	<button onclick="start()"> Log In or Sign Up </button>
+	</div>
+
+	<script>
+		function goToHome() {
+			window.location.href = "my code.html";
+		}
+		
+		function start() {
+			window.location.href = "log in.html";
+		}
+		
+
+	</script>
+	</body>
+</html>
